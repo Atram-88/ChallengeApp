@@ -4,40 +4,23 @@ namespace ChallengeApp.Tests
     {
      
         [Test]
-        public void WhenEmpCollectTwoScores_ShouldCorrectSum()
+        public void WhenEmployeeCollectTwoScores_ShouldCorrectSum()
         {
             //Arrange
             Employee employee6 = new Employee("Jacek", "Pacek", 30);
             employee6.AddScore(1);
-            employee6.AddScore(10);
+            employee6.AddScore(-10);
 
             //Act
             var result = employee6.Result;
 
             //Assert
-
-            Assert.AreEqual(11, result);
+            Assert.AreEqual(-9, result);
    
         }
 
         [Test]
-        public void WhenEmpCollectScores_ShouldCorrectSum()
-        {
-            //Arrange
-            Employee employee6 = new Employee("Jacek", "Pacek", 30);
-            employee6.AddScore(-9);
-            employee6.AddScore(10);
-
-            //Act
-            var result = employee6.Result;
-
-            //Assert
-            Assert.AreEqual(1, result);
-
-        }
-
-        [Test]
-        public void WhenTwoEmpsResultsAreEqual()
+        public void WhenTwoEmployeesTheSameResultsAreEqual()
         {
             //Arrange
             Employee employee6 = new Employee("Jacek", "Pacek", 30);
@@ -69,6 +52,21 @@ namespace ChallengeApp.Tests
 
             //Assert
             Assert.AreNotEqual(name6, name7);
+
+        }
+        [Test]
+        public void WhenAgesAreNotEqual()
+        {
+            //Arrange
+            Employee employee6 = new Employee("Jacek", "Pacek", 30);
+            Employee employee7 = new Employee("Marek", "Pacek", 29);
+
+            //Act
+            var age6 = employee6.Age;
+            var age7 = employee7.Age;
+
+            //Assert
+            Assert.AreNotEqual(age6, age7);
 
         }
 
