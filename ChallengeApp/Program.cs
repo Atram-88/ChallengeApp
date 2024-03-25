@@ -1,4 +1,5 @@
 ﻿
+using System.ComponentModel.DataAnnotations;
 using ChallengeApp;
 
 
@@ -46,8 +47,16 @@ foreach (var employee in employees)
     }
 }
 
-Console.WriteLine("Najwieksza liczbe punktow zdobywa: " + empWithMaxResult.Name + " " + empWithMaxResult.Surname + " lat " + empWithMaxResult.Age);
-Console.WriteLine("Wynik wynosi: " + maxResult);
+//Console.WriteLine("Najwieksza liczbe punktow zdobywa: " + empWithMaxResult.Name + " " + empWithMaxResult.Surname + " lat " + empWithMaxResult.Age);
+//Console.WriteLine("Wynik wynosi: " + maxResult);
+
+
+
+var statistics = employee1.GetStatistics();
+//Interpolacja stringow
+Console.WriteLine($"Minimalna ocena pracownika to: {statistics.Min}");
+Console.WriteLine($"Maksymalna ocena pracownika to: {statistics.Max}");
+Console.WriteLine($"Wartosc srednia z ocen pracownika to: {statistics.Average:N2}");
 
 
 

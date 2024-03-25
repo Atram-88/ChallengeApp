@@ -2,7 +2,7 @@ namespace ChallengeApp.Tests
 {
     public class Tests
     {
-     
+
         [Test]
         public void WhenEmployeeCollectTwoScores_ShouldCorrectSum()
         {
@@ -16,7 +16,7 @@ namespace ChallengeApp.Tests
 
             //Assert
             Assert.AreEqual(-9, result);
-   
+
         }
 
         [Test]
@@ -67,6 +67,60 @@ namespace ChallengeApp.Tests
 
             //Assert
             Assert.AreNotEqual(age6, age7);
+
+        }
+        [Test]
+        public void StatisticsTestWhenMinValueIsEqualThenTestIsCorrect()
+        {
+            //Arrange
+            Employee employee1 = new Employee("Jacek", "Pacek", 30);
+            employee1.AddScore(1);
+            employee1.AddScore(10);
+            employee1.AddScore(7);
+            employee1.AddScore(2);
+            employee1.AddScore(8);
+
+            //Act
+            var statistics = employee1.GetStatistics();
+
+            //Assert
+            Assert.AreEqual(statistics.Min, 1);
+
+        }
+        [Test]
+        public void StatisticsTestWhenMaxValueIsEqualThenTestIsCorrect()
+        {
+            //Arrange
+            Employee employee1 = new Employee("Jacek", "Pacek", 30);
+            employee1.AddScore(1);
+            employee1.AddScore(10);
+            employee1.AddScore(7);
+            employee1.AddScore(2);
+            employee1.AddScore(8);
+
+            //Act
+            var statistics = employee1.GetStatistics();
+
+            //Assert
+            Assert.AreEqual(statistics.Max, 10);
+
+        }
+        [Test]
+        public void StatisticsTestWhenAverageValueIsEqualThenTestIsCorrect()
+        {
+            //Arrange
+            Employee employee1 = new Employee("Jacek", "Pacek", 30);
+            employee1.AddScore(1);
+            employee1.AddScore(10);
+            employee1.AddScore(7);
+            employee1.AddScore(2);
+            employee1.AddScore(8);
+
+            //Act
+            var statistics = employee1.GetStatistics();
+
+            //Assert
+            Assert.AreEqual(Math.Round(statistics.Average, 2), Math.Round(5.599, 2));
 
         }
 
