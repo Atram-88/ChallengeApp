@@ -1,4 +1,6 @@
 ﻿
+using System.Diagnostics;
+
 namespace ChallengeApp
 {
     public class Employee
@@ -41,10 +43,10 @@ namespace ChallengeApp
                 Console.WriteLine("invalid grade value");
             }
         }
-        
+
         public void AddScore(string number)
         {
-            if(float.TryParse(number, out float result))
+            if (float.TryParse(number, out float result))
             {
                 this.AddScore(result);
             }
@@ -70,30 +72,128 @@ namespace ChallengeApp
         }
 
 
-        //metoda zwracajaca model Statistics (referencje/obiekt)
-        public Statistics GetStatistics()
+        public Statistics GetStatisticsWithForeach()
         {
-            //implementacja metody w taki sposob zeby zwrocila odpowiednio wypelniony model Statistics
-            //przygotowanie obiektu:
-            var statistics = new Statistics();
+            var statistics1 = new Statistics();
+            statistics1.Min = float.MaxValue;
+            statistics1.Max = float.MinValue;
+            statistics1.Average = 0;
 
-            statistics.Min = float.MaxValue;
-            statistics.Max = float.MinValue;
-            statistics.Average = 0;
-
-            foreach (var score in this.score) 
+            foreach (float grade in this.score)
             {
-                statistics.Min = Math.Min(statistics.Min, score);
-                statistics.Max = Math.Max(statistics.Max, score);
-                statistics.Average += score;
+                statistics1.Min = Math.Min(statistics1.Min, grade);
+                statistics1.Max = Math.Max(statistics1.Max, grade);
+                statistics1.Average = this.score.Sum();
             }
+            statistics1.Average = statistics1.Average / this.score.Count;
+            return statistics1;
+        }
 
-            statistics.Average = statistics.Average / this.score.Count();
+        public Statistics GetStatisticsWithFor()
+        {
+            var statistics2 = new Statistics();
+            statistics2.Min = float.MaxValue;
+            statistics2.Max = float.MinValue;
+            statistics2.Average = 0;
+            int i = 0;
 
-
-            return statistics;
+            for (i = 0; i < this.score.Count;)
+            {
+                statistics2.Min = Math.Min(statistics2.Min, this.score[i]);
+                statistics2.Max = Math.Max(statistics2.Max, this.score[i]);
+                statistics2.Average += this.score[i];
+                i++;
+            }
+            statistics2.Average = statistics2.Average / this.score.Count;
+            return statistics2;
 
         }
-       
+        public Statistics GetStatisticsWithDoWhile()
+        {
+            var statistics3 = new Statistics();
+            statistics3.Min = float.MaxValue;
+            statistics3.Max = float.MinValue;
+            statistics3.Average = 0;
+            int i = 0;
+            do
+            {
+                statistics3.Min = Math.Min(statistics3.Min, this.score[i]);
+                statistics3.Max = Math.Max(statistics3.Max, this.score[i]);
+                statistics3.Average += this.score[i];
+                i++;
+            }
+            while (i < this.score.Count);
+
+            statistics3.Average /= this.score.Count;
+            return statistics3;
+
+        }
+        public Statistics GetStatisticsWithWhile()
+        {
+            var statistics4 = new Statistics();
+            statistics4.Min = float.MaxValue;
+            statistics4.Max = float.MinValue;
+            statistics4.Average = 0;
+            int i = 0;
+
+            while (i < this.score.Count)
+            {
+                statistics4.Min = Math.Min(statistics4.Min, this.score[i]);
+                statistics4.Max = Math.Max(statistics4.Max, this.score[i]);
+                statistics4.Average += this.score[i];
+                i++;  
+            }
+            statistics4.Average /= this.score.Count;
+            return statistics4;
+        }
     }
 }
+ 
+
+
+//Petla while
+//var index = 0;
+//while (index < this.score.Count)
+//{
+//    if (this.score[index] == 5)
+//    {
+//        break;
+//    }
+
+//    statistics.Min = Math.Min(statistics.Min, this.score[index]);
+//    statistics.Max = Math.Max(statistics.Max, this.score[index]);
+//    statistics.Average += this.score[index];
+//    index++;
+//}
+
+//Petla do,while
+
+//var index = 0;
+//do
+//{
+//    statistics.Min = Math.Min(statistics.Min, this.score[index]);
+//    statistics.Max = Math.Max(statistics.Max, this.score[index]);
+//    statistics.Average += this.score[index];
+//    index++;
+//} while (index < this.score.Count);
+
+
+//Petla foreach:
+//foreach (var score in this.score)
+//{
+
+//    statistics.Min = Math.Min(statistics.Min, score);
+//    statistics.Max = Math.Max(statistics.Max, score);
+//    statistics.Average += score;
+//}
+
+//statistics.Average = statistics.Average / this.score.Count();
+
+
+//return statistics;
+
+// go to here/ here:
+
+
+
+
