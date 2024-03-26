@@ -1,6 +1,4 @@
 ﻿
-using System.Diagnostics;
-
 namespace ChallengeApp
 {
     public class Employee
@@ -149,50 +147,6 @@ namespace ChallengeApp
     }
 }
  
-
-
-//Petla while
-//var index = 0;
-//while (index < this.score.Count)
-//{
-//    if (this.score[index] == 5)
-//    {
-//        break;
-//    }
-
-//    statistics.Min = Math.Min(statistics.Min, this.score[index]);
-//    statistics.Max = Math.Max(statistics.Max, this.score[index]);
-//    statistics.Average += this.score[index];
-//    index++;
-//}
-
-//Petla do,while
-
-//var index = 0;
-//do
-//{
-//    statistics.Min = Math.Min(statistics.Min, this.score[index]);
-//    statistics.Max = Math.Max(statistics.Max, this.score[index]);
-//    statistics.Average += this.score[index];
-//    index++;
-//} while (index < this.score.Count);
-
-
-//Petla foreach:
-//foreach (var score in this.score)
-//{
-
-//    statistics.Min = Math.Min(statistics.Min, score);
-//    statistics.Max = Math.Max(statistics.Max, score);
-//    statistics.Average += score;
-//}
-
-//statistics.Average = statistics.Average / this.score.Count();
-
-
-//return statistics;
-
-// go to here/ here:
 
 
 
