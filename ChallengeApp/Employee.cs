@@ -1,10 +1,9 @@
-﻿using System.Net.NetworkInformation;
-
+﻿
 namespace ChallengeApp
 {
     public class Employee
     {
-        private List<int> score = new List<int>();
+        private List<float> score = new List<float>();
 
         //konstruktor:
         public Employee(string name)
@@ -22,21 +21,54 @@ namespace ChallengeApp
         public string Name { get; private set; }
         public string Surname { get; private set; }
         public int Age { get; private set; }
-
-        //Metody:
-        //metoda zwracajaca wynik:
-        public int Result
+        public float Result
         {
             get
             {
                 return this.score.Sum();
             }
         }
+        //Metody:
         //metoda dodajaca punkty do listy
+        public void AddScore(float number)
+        {
+            if (number >= 0 && number <= 100)
+            {
+                this.score.Add(number);
+            }
+            else
+            {
+                Console.WriteLine("invalid grade value");
+            }
+        }
+        
+        public void AddScore(string number)
+        {
+            if(float.TryParse(number, out float result))
+            {
+                this.AddScore(result);
+            }
+            else
+            {
+                Console.WriteLine("String is not a float");
+            }
+        }
+        public void AddScore(double number)
+        {
+            float valueInFloat = (float)number;
+            this.AddScore(valueInFloat);
+        }
         public void AddScore(int number)
         {
-            this.score.Add(number);
+            float IntInFloat = (float)number;
+            this.AddScore(IntInFloat);
         }
+        public void AddScore(long number)
+        {
+            float LongInFloat = (float)number;
+            this.AddScore(LongInFloat);
+        }
+
 
         //metoda zwracajaca model Statistics (referencje/obiekt)
         public Statistics GetStatistics()
