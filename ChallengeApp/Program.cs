@@ -10,8 +10,8 @@ Employee employee3 = new Employee("Mark", "Markson", 46);
 employee1.AddScore("5");
 employee1.AddScore(10);
 employee1.AddScore("5");
-employee1.AddScore(2);
-employee1.AddScore("8");
+employee1.AddScore('B');
+employee1.AddScore('a');
 
 employee2.AddScore(1);
 employee2.AddScore(6);
@@ -38,43 +38,38 @@ float maxResult = -1;
 Employee empWithMaxResult = null;
 
 
-foreach (var employee in employees)
+foreach (var emp in employees)
 {
-    if (employee.Result > maxResult)
+    if (emp.Result > maxResult)
     {
-        maxResult = employee.Result;
-        empWithMaxResult = employee;
+        maxResult = emp.Result;
+        empWithMaxResult = emp;
     }
 }
 
-//Console.WriteLine("Najwieksza liczbe punktow zdobywa: " + empWithMaxResult.Name + " " + empWithMaxResult.Surname + " lat " + empWithMaxResult.Age);
-//Console.WriteLine("Wynik wynosi: " + maxResult);
+
+Console.WriteLine("Witamy w progaramie do oceny pracownikow");
+Console.WriteLine("=========================================");
+Console.WriteLine();
 
 
+Employee employee = new Employee("Jacek", "Pacek", 32);
 
+while (true)
+{
+    Console.WriteLine("Podaj kolejna ocene pracownika: ");
+    var input = Console.ReadLine();
+    if (input == "q")
+    {
+        break;
+    }
+    employee.AddScore(input);
+}
 
-var statistics1 = employee1.GetStatisticsWithForeach();
-Console.WriteLine($"Minimalna ocena pracownika to: {statistics1.Min}");
-Console.WriteLine($"Maksymalna ocena pracownika to: {statistics1.Max}");
-Console.WriteLine($"Wartosc srednia z ocen pracownika to: {statistics1.Average:N2}");
-Console.WriteLine(" ");
-
-var statistics2 = employee1.GetStatisticsWithFor();
-Console.WriteLine($"Minimalna ocena pracownika to: {statistics2.Min}");
-Console.WriteLine($"Maksymalna ocena pracownika to: {statistics2.Max}");
-Console.WriteLine($"Wartosc srednia z ocen pracownika to: {statistics2.Average:N2}");
-Console.WriteLine(" ");
-
-var statistics3 = employee1.GetStatisticsWithDoWhile();
-Console.WriteLine($"Minimalna ocena pracownika to: {statistics3.Min}");
-Console.WriteLine($"Maksymalna ocena pracownika to: {statistics3.Max}");
-Console.WriteLine($"Wartosc srednia z ocen pracownika to: {statistics3.Average:N2}");
-Console.WriteLine(" ");
-
-var statistics4 = employee1.GetStatisticsWithWhile();
-Console.WriteLine($"Minimalna ocena pracownika to: {statistics4.Min}");
-Console.WriteLine($"Maksymalna ocena pracownika to: {statistics4.Max}");
-Console.WriteLine($"Wartosc srednia z ocen pracownika to: {statistics4.Average:N2}");
+var statistics = employee.GetStatistics();
+Console.WriteLine("Srednia ocen pracownika wynosi: " + statistics.Average);
+Console.WriteLine("Minimalna ocena pracownika wynosi: " + statistics.Min);
+Console.WriteLine("Maksymalna ocena pracownika wynosi: " + statistics.Max);
 
 
 

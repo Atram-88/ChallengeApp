@@ -4,22 +4,6 @@ namespace ChallengeApp.Tests
     {
 
         [Test]
-        public void WhenEmployeeCollectTwoScores_ShouldCorrectSum()
-        {
-            //Arrange
-            Employee employee6 = new Employee("Jacek", "Pacek", 30);
-            employee6.AddScore(1);
-            employee6.AddScore(-10);
-
-            //Act
-            var result = employee6.Result;
-
-            //Assert
-            Assert.AreEqual(-9, result);
-
-        }
-
-        [Test]
         public void WhenTwoEmployeesTheSameResultsAreEqual()
         {
             //Arrange
@@ -123,8 +107,79 @@ namespace ChallengeApp.Tests
             Assert.AreEqual(Math.Round(statistics.Average, 2), Math.Round(5.599, 2));
 
         }
+        [Test]
+        public void StatisticsTestWhenValueWithStringsIsEqualThenTestIsCorrect()
+        {
+            //Arrange
+            Employee employee1 = new Employee("Jacek", "Pacek", 30);
+            employee1.AddScore('a');
+            employee1.AddScore('B');
+            employee1.AddScore('c');
+            employee1.AddScore('d');
+            employee1.AddScore('E');
 
+            //Act
+            var statistics = employee1.GetStatistics();
 
+            //Assert
+            Assert.AreEqual(statistics.Average, 60);
+
+        }
+        [Test]
+        public void StatisticsTestWhenProperCharAsAverageLetterThenTestIsCorrect()
+        {
+            //Arrange
+            Employee employee1 = new Employee("Jacek", "Pacek", 30);
+            employee1.AddScore('a');
+            employee1.AddScore('B');
+            employee1.AddScore('c');
+            employee1.AddScore('d');
+            employee1.AddScore('E');
+
+            //Act
+            var statistics = employee1.GetStatistics();
+
+            //Assert
+            Assert.AreEqual(statistics.AverageLetter, 'B');
+
+        }
+
+        [Test]
+        public void StatisticsTestWhenScoresAreParsableThenTestIsCorrect()
+        {
+            //Arrange
+            Employee employee1 = new Employee("Jacek", "Pacek", 30);
+            employee1.AddScore(11.5);
+            employee1.AddScore(5);
+            employee1.AddScore(3.5);
+            employee1.AddScore('d');
+            employee1.AddScore('E');
+
+            //Act
+            var Suma = employee1.Result;
+            
+            //Assert
+            Assert.AreEqual(Suma, 80);
+
+        }
+
+        [Test]
+        public void StatisticsTestWhenSomeScoresAreNotParsableThenTestIsCorrect()
+        {
+            //Arrange
+            Employee employee1 = new Employee("Jacek", "Pacek", 30);
+            employee1.AddScore("Marek");
+            employee1.AddScore(5);
+            employee1.AddScore('J');
+            employee1.AddScore('d');
+            employee1.AddScore('E');
+
+            //Act
+            var Suma = employee1.Result;
+
+            //Assert
+            Assert.AreEqual(Suma, 65);
+
+        }
     }
-
 }

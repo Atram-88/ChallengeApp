@@ -1,4 +1,6 @@
 ﻿
+using System.ComponentModel.Design;
+
 namespace ChallengeApp
 {
     public class Employee
@@ -69,80 +71,72 @@ namespace ChallengeApp
             this.AddScore(LongInFloat);
         }
 
+        public void AddScore(char letter)
+        {    
+            switch(letter)
+            {
+                case 'A':
+                case 'a':
+                    this.score.Add(100);
+                    break;
+                case 'B':
+                case 'b':
+                    this.score.Add(80);
+                    break;
+                case 'C':
+                case 'c':
+                    this.score.Add(60);
+                    break;
+                case 'D':
+                case 'd':
+                    this.score.Add(40);
+                    break;
+                case 'E':
+                case 'e':
+                    this.score.Add(20);
+                    break;
+                default:
+                    Console.WriteLine("Wrong Letters");
+                    break;
+            }
+        }
 
-        public Statistics GetStatisticsWithForeach()
+
+        public Statistics GetStatistics()
         {
-            var statistics1 = new Statistics();
-            statistics1.Min = float.MaxValue;
-            statistics1.Max = float.MinValue;
-            statistics1.Average = 0;
+            var statistics = new Statistics();
+            statistics.Min = float.MaxValue;
+            statistics.Max = float.MinValue;
+            statistics.Average = 0;
 
             foreach (float grade in this.score)
             {
-                statistics1.Min = Math.Min(statistics1.Min, grade);
-                statistics1.Max = Math.Max(statistics1.Max, grade);
-                statistics1.Average = this.score.Sum();
+                statistics.Min = Math.Min(statistics.Min, grade);
+                statistics.Max = Math.Max(statistics.Max, grade);
+                statistics.Average = this.score.Sum();
             }
-            statistics1.Average = statistics1.Average / this.score.Count;
-            return statistics1;
-        }
+            statistics.Average = statistics.Average / this.score.Count;
 
-        public Statistics GetStatisticsWithFor()
-        {
-            var statistics2 = new Statistics();
-            statistics2.Min = float.MaxValue;
-            statistics2.Max = float.MinValue;
-            statistics2.Average = 0;
-            int i = 0;
-
-            for (i = 0; i < this.score.Count;)
+            switch(statistics.Average)
             {
-                statistics2.Min = Math.Min(statistics2.Min, this.score[i]);
-                statistics2.Max = Math.Max(statistics2.Max, this.score[i]);
-                statistics2.Average += this.score[i];
-                i++;
+                case var average when average >= 80:
+                    statistics.AverageLetter = 'A';
+                    break;
+                case var average when average >= 60:
+                    statistics.AverageLetter = 'B';
+                    break;
+                case var average when average >= 40:
+                    statistics.AverageLetter = 'C';
+                    break;
+                case var average when average >= 20:
+                    statistics.AverageLetter = 'D';
+                    break;
+                default:
+                    statistics.AverageLetter = 'E';
+                    break;
+
             }
-            statistics2.Average = statistics2.Average / this.score.Count;
-            return statistics2;
-
-        }
-        public Statistics GetStatisticsWithDoWhile()
-        {
-            var statistics3 = new Statistics();
-            statistics3.Min = float.MaxValue;
-            statistics3.Max = float.MinValue;
-            statistics3.Average = 0;
-            int i = 0;
-            do
-            {
-                statistics3.Min = Math.Min(statistics3.Min, this.score[i]);
-                statistics3.Max = Math.Max(statistics3.Max, this.score[i]);
-                statistics3.Average += this.score[i];
-                i++;
-            }
-            while (i < this.score.Count);
-
-            statistics3.Average /= this.score.Count;
-            return statistics3;
-
-        }
-        public Statistics GetStatisticsWithWhile()
-        {
-            var statistics4 = new Statistics();
-            statistics4.Min = float.MaxValue;
-            statistics4.Max = float.MinValue;
-            statistics4.Average = 0;
-            int i = 0;
-
-            while (i < this.score.Count)
-            {
-                statistics4.Min = Math.Min(statistics4.Min, this.score[i]);
-                statistics4.Max = Math.Max(statistics4.Max, this.score[i]);
-                statistics4.Average += this.score[i];
-                i++;  
-            }
-            statistics4.Average /= this.score.Count;
-            return statistics4;
+            return statistics;
         }
     }
 }
