@@ -1,10 +1,13 @@
 ﻿
-using System.ComponentModel.Design;
+
 
 namespace ChallengeApp
 {
     public class Employee
     {
+
+        private readonly char sex = 'M';
+
         private List<float> score = new List<float>();
 
         //konstruktor:
@@ -17,6 +20,7 @@ namespace ChallengeApp
             this.Name = name;
             this.Surname = surname;
             this.Age = age;
+            this.sex = 'K';
 
         }
         //propercje:
@@ -40,19 +44,23 @@ namespace ChallengeApp
             }
             else
             {
-                Console.WriteLine("invalid grade value");
+                throw new Exception ("invalid grade value");
             }
         }
 
-        public void AddScore(string number)
+        public void AddScore(string value)
         {
-            if (float.TryParse(number, out float result))
+            if (float.TryParse(value, out float result))
             {
                 this.AddScore(result);
             }
+            else if (char.TryParse(value, out char resultChar))
+            {
+                this.AddScore(resultChar);
+            }
             else
             {
-                Console.WriteLine("String is not a float");
+                throw new Exception ("String is not a float");
             }
         }
         public void AddScore(double number)
@@ -96,8 +104,7 @@ namespace ChallengeApp
                     this.score.Add(20);
                     break;
                 default:
-                    Console.WriteLine("Wrong Letters");
-                    break;
+                    throw new Exception ("Wrong Letter");    
             }
         }
 

@@ -47,7 +47,6 @@ foreach (var emp in employees)
     }
 }
 
-
 Console.WriteLine("Witamy w progaramie do oceny pracownikow");
 Console.WriteLine("=========================================");
 Console.WriteLine();
@@ -63,7 +62,15 @@ while (true)
     {
         break;
     }
-    employee.AddScore(input);
+    try
+    { 
+        employee.AddScore(input); 
+    }
+    catch(Exception ex)
+    {
+        Console.WriteLine($"Exception catched: {ex.Message}");
+    }
+   
 }
 
 var statistics = employee.GetStatistics();
