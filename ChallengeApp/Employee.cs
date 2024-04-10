@@ -3,29 +3,17 @@
 
 namespace ChallengeApp
 {
-    public class Employee
+    public class Employee : Person
     {
-
-        private readonly char sex = 'M';
-
         private List<float> score = new List<float>();
 
         //konstruktor:
-        public Employee(string name)
-        {
-            this.Name = name;
-        }
-        public Employee(string name, string surname, int age)
-        {
-            this.Name = name;
-            this.Surname = surname;
+        public Employee(string name, string surname, char sex, int age)
+            :base(name, surname, sex)
+        {   
             this.Age = age;
-            this.sex = 'K';
-
         }
         //propercje:
-        public string Name { get; private set; }
-        public string Surname { get; private set; }
         public int Age { get; private set; }
         public float Result
         {
