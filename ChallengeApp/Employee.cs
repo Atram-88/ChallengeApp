@@ -5,7 +5,7 @@ namespace ChallengeApp
 {
     public class Employee : Person
     {
-        private List<float> score = new List<float>();
+        private List<float> grade = new List<float>();
 
         //konstruktor:
         public Employee(string name, string surname, char sex, int age)
@@ -19,16 +19,16 @@ namespace ChallengeApp
         {
             get
             {
-                return this.score.Sum();
+                return this.grade.Sum();
             }
         }
         //Metody:
         //metoda dodajaca punkty do listy
-        public void AddScore(float number)
+        public void AddGrade(float number)
         {
             if (number >= 0 && number <= 100)
             {
-                this.score.Add(number);
+                this.grade.Add(number);
             }
             else
             {
@@ -36,60 +36,60 @@ namespace ChallengeApp
             }
         }
 
-        public void AddScore(string value)
+        public void AddGrade(string value)
         {
             if (float.TryParse(value, out float result))
             {
-                this.AddScore(result);
+                this.AddGrade(result);
             }
             else if (char.TryParse(value, out char resultChar))
             {
-                this.AddScore(resultChar);
+                this.AddGrade(resultChar);
             }
             else
             {
                 throw new Exception ("String is not a float");
             }
         }
-        public void AddScore(double number)
+        public void AddGrade(double number)
         {
             float valueInFloat = (float)number;
-            this.AddScore(valueInFloat);
+            this.AddGrade(valueInFloat);
         }
-        public void AddScore(int number)
+        public void AddGrade(int number)
         {
             float IntInFloat = (float)number;
-            this.AddScore(IntInFloat);
+            this.AddGrade(IntInFloat);
         }
-        public void AddScore(long number)
+        public void AddGrade(long number)
         {
             float LongInFloat = (float)number;
-            this.AddScore(LongInFloat);
+            this.AddGrade(LongInFloat);
         }
 
-        public void AddScore(char letter)
+        public void AddGrade(char letter)
         {    
             switch(letter)
             {
                 case 'A':
                 case 'a':
-                    this.score.Add(100);
+                    this.grade.Add(100);
                     break;
                 case 'B':
                 case 'b':
-                    this.score.Add(80);
+                    this.grade.Add(80);
                     break;
                 case 'C':
                 case 'c':
-                    this.score.Add(60);
+                    this.grade.Add(60);
                     break;
                 case 'D':
                 case 'd':
-                    this.score.Add(40);
+                    this.grade.Add(40);
                     break;
                 case 'E':
                 case 'e':
-                    this.score.Add(20);
+                    this.grade.Add(20);
                     break;
                 default:
                     throw new Exception ("Wrong Letter");    
@@ -104,13 +104,13 @@ namespace ChallengeApp
             statistics.Max = float.MinValue;
             statistics.Average = 0;
 
-            foreach (float grade in this.score)
+            foreach (float grade in this.grade)
             {
                 statistics.Min = Math.Min(statistics.Min, grade);
                 statistics.Max = Math.Max(statistics.Max, grade);
-                statistics.Average = this.score.Sum();
+                statistics.Average = this.grade.Sum();
             }
-            statistics.Average = statistics.Average / this.score.Count;
+            statistics.Average = statistics.Average / this.grade.Count;
 
             switch(statistics.Average)
             {

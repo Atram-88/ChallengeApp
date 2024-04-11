@@ -3,27 +3,27 @@
 using ChallengeApp;
 
 
-Employee employee1 = new Employee("Jacek", "Pacek", 32);
-Employee employee2 = new Employee("Paul", "Kraul", 33);
-Employee employee3 = new Employee("Mark", "Markson", 46);
+Employee employee1 = new Employee("Jacek", "Pacek", 'M', 32);
+Employee employee2 = new Employee("Paul", "Kraul", 'M', 33);
+Employee employee3 = new Employee("Mark", "Markson", 'M', 46);
 
-employee1.AddScore("5");
-employee1.AddScore(10);
-employee1.AddScore("5");
-employee1.AddScore('B');
-employee1.AddScore('a');
+employee1.AddGrade("5");
+employee1.AddGrade(10);
+employee1.AddGrade("5");
+employee1.AddGrade('B');
+employee1.AddGrade('a');
 
-employee2.AddScore(1);
-employee2.AddScore(6);
-employee2.AddScore(5);
-employee2.AddScore(9);
-employee2.AddScore(2);
+employee2.AddGrade(1);
+employee2.AddGrade(6);
+employee2.AddGrade(5);
+employee2.AddGrade(9);
+employee2.AddGrade(2);
 
-employee3.AddScore(7);
-employee3.AddScore(1);
-employee3.AddScore(4);
-employee3.AddScore(6);
-employee3.AddScore(4);
+employee3.AddGrade(7);
+employee3.AddGrade(1);
+employee3.AddGrade(4);
+employee3.AddGrade(6);
+employee3.AddGrade(4);
 
 var result1 = employee1.Result;
 var result2 = employee2.Result;
@@ -52,7 +52,7 @@ Console.WriteLine("=========================================");
 Console.WriteLine();
 
 
-Employee employee = new Employee("Jacek", "Pacek", 32);
+Employee employee = new Employee("Jacek", "Pacek",'M', 32);
 
 while (true)
 {
@@ -64,7 +64,7 @@ while (true)
     }
     try
     { 
-        employee.AddScore(input); 
+        employee.AddGrade(input); 
     }
     catch(Exception ex)
     {
