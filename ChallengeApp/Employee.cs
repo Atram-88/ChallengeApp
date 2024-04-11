@@ -3,18 +3,22 @@
 
 namespace ChallengeApp
 {
-    public class Employee : Person
+
+    // Jak to zrobic
+    public class Employee : IEmployee
     {
         private List<float> grade = new List<float>();
 
         //konstruktor:
-        public Employee(string name, string surname, char sex, int age)
-            :base(name, surname, sex)
-        {   
-            this.Age = age;
+        public Employee(string name, string surname)
+
+        {
+            this.Name = name;
+            this.Surname = surname;
         }
         //propercje:
-        public int Age { get; private set; }
+        public string Name { get; private set; }
+        public string Surname { get; private set; }
         public float Result
         {
             get
@@ -73,23 +77,23 @@ namespace ChallengeApp
             {
                 case 'A':
                 case 'a':
-                    this.grade.Add(100);
+                    this.AddGrade(100);
                     break;
                 case 'B':
                 case 'b':
-                    this.grade.Add(80);
+                    this.AddGrade(80);
                     break;
                 case 'C':
                 case 'c':
-                    this.grade.Add(60);
+                    this.AddGrade(60);
                     break;
                 case 'D':
                 case 'd':
-                    this.grade.Add(40);
+                    this.AddGrade(40);
                     break;
                 case 'E':
                 case 'e':
-                    this.grade.Add(20);
+                    this.AddGrade(20);
                     break;
                 default:
                     throw new Exception ("Wrong Letter");    
